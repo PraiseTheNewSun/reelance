@@ -1,0 +1,219 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            margin: 0px;
+            padding: 0px;
+            width: 100%;
+        }
+        .navbar{
+            width: 100%;
+            height: 70px;
+            display: flexbox;
+            background-color: #007fff;
+        }
+        .navbar-logo{
+            float: left;
+            padding: 10px 0px 10px 20px;
+        }
+        .navbar-items{
+            float: right;
+            display: inline;
+            padding: 10px 20px 10px 0px;
+        }
+        #navbar-items{
+            background-color: #007fff;
+            font-family: Arial, Helvetica, sans-serif;
+            padding: 0px 20px 0px 20px;
+            height: 50px;
+            width: 100px;
+            border-radius: 5px;
+            border: solid 1px white;
+            color: white;
+        }
+        #navbar-items:hover{
+            background-color: white;
+            padding: 0px 20px 0px 20px;
+            height: 50px;
+            width: 100px;
+            border-radius: 5px;
+            color: #007fff;
+        }
+        #items{
+            display: flex;
+            width: 100%;
+            margin: 0px;
+        }
+        #button{
+            background-color: #007fff; 
+            height: 50px; 
+            width: 250px; 
+            margin-bottom: 5px; 
+            border: none;
+            color: #fff;
+        }
+        #button:hover{
+            background-color: #0080ff42;
+            color: #007fff;
+        }
+        #skills:hover{
+            background-color: #0080ff80;
+        }
+    </style>
+</head>
+<body>
+    <div style="display: inline-flexbox; width: 100%;">
+        <div class="navbar">
+            <div class="navbar-logo">
+                <img src="{% static 'images/logo.png' %}" alt="logo" width="150px" height="50px">
+            </div>
+            <div class="navbar-items">
+                <a href="{% url 'logout' %}"><button id="navbar-items">Log Out</button></a>
+            </div>
+        </div>
+        <div id="items">
+            <div align="center" style="width: 25%; height: 550px; padding: 40px 10px 0px 20px;">
+                <div style=" background-color: #0080ff10; border-radius: 15px; padding: 40px 0px 40px 0px;">
+                    <div style="height: 100px; width: 100px; border: none; border-radius: 50px; background-color: #999999;">
+                        <img style="border-radius: 50%;" src="{% static 'images/avatar.png' %}" alt="" height="100%" width="100%">
+                    </div>
+                    <h3>{{request.user}}</h3>
+                    <a href="{% url 'talent-dashboard' %}"><button id="button" type="button" style="border-radius: 15px 15px 0 0;">Dashboard</button></a>
+                    <a href="{% url 'profile' %}"><button id="button" type="button" style="border-radius: 1px;">Profile</button></a>
+                    <a href="{% url 'jobs' %}"><button id="button" type="button" style="border-radius: 1px;">Jobs</button></a>
+                    <a href="{% url 'applications' %}"><button id="button" type="button" style="border-radius: 1px;">Applications</button></a>
+                    <a href="{% url 'hires' %}"><button id="button" type="button" style="border-radius: 0 0 15px 15px;">Hires</button></a>
+                </div>
+            </div>
+            <div style="width: 75%; height: wrap-content; padding: 40px 40px 0px 10px; font-family: bahnschrift">
+                <div style="border-radius: 5px; height: wrap-content; padding: 0 40px 40px 40px;">
+                    {% if page == 'jobs' %}
+                    <input style="height: 40px; padding-left: 20px; padding-right: 10px; border-radius: 20px; border: solid 1px #666; width: 750px; margin-bottom: 30px; font-size: 20px;" type="search" name="" id="" placeholder="Search Jobs..."><br>
+                    <span style="margin-bottom: 5px; font-size: 30px; font-family: bahnschrift;">Available Jobs</span><br>
+                    <span style="font-size: 13px; padding-left: 30px;">Browse through the available jobs for jobs that match your skills</span>
+                    {% for job in jobs %}
+                    <div style=" margin-top: 15px; background-color: #0080ff40; height: wrap-content; width: 80%; color: #010c4b; padding: 5px 50px 30px 20px; border-radius: 10px;">
+                        <p style="font-size: 12px;">Posted on {{job.time_posted}}</p>
+                        <span style="font-size: 20px;"><b>{{job.title.capitalize}}</b></span>
+                        <p style="font-size: 14px;">{{job.description}}</p>
+                        <h2 style="font-size: 15px;">$ {{job.budget}}</h2>
+                        <span style="font-size: 12px;">Posted by: {{job.author}}</span>
+                        <button id="apply1" style="width: 100px; float: right; border-radius: 10px; border: none; color: white; height: 40px; background-color: #007fff;" id="apply_button">Apply &LongRightArrow;</button>
+                        <form id="application_form" method="post" style="display: none;">
+                            {% csrf_token %}
+                            <input style="display: none;" type="text" name="job_info" value="{{job.title}}"><br>
+                            <input style="padding-left: 10px; height: 30px; margin-bottom: 10px; border-radius: 10px; border: solid 1px #333" type="number" name="bid" id="" placeholder="Bid"><br>
+                            <textarea placeholder="Cover letter" name="cover_letter" id="" cols="30" rows="10" style="padding-left: 10px; padding-top: 10px; height: 250px; width: 600px; border-radius: 15px; font-family: bahnschrift;"></textarea><br>
+                            <input style="display: none;" type="text" name="applicant_name" id="" value="{{request.user}}"><br>
+                            <input style="display: none;" type="text" name="author" id="" value="{{ job.author }}">
+                            <input id="apply2" style="width: 100px; border-radius: 10px; border: none; color: white; height: 40px; background-color: #007fff;" type="submit" value="Apply">
+                        </form>
+                    </div>
+                    {% endfor %}
+                    <script>
+                        apply1 = document.getElementById('apply1');
+                        form = document.getElementById('application_form');
+
+                        apply1.onclick = function Apply(){
+                            form.style.display = "block";
+                            apply1.style.display = "none";
+                        }
+                    </script>
+                    {% endif %}
+                    {% if page == 'profile' %}
+                    <div>
+                        <span style="font-size: 40px; font-family: bahnschrift; color: #0f0f0fce; border-radius: 0 20px 20px 0; padding: 5px 10px 5px 10px; background-color: #0080ff42">Profile</span><hr style=" margin-bottom: 30px;">
+                        <div style="display: flex; justify-content: space-between;">
+                            <div>
+                                <input style="width: 550px; height: 35px; border: solid 1px #333; padding-left: 10px; border-radius: 10px; font-size: 18px; margin-bottom: 20px;" type="text" disabled value="Role title"><br>
+                                <input style="width: 550px; height: 35px; border: solid 1px #333; padding-left: 10px; border-radius: 10px; font-size: 18px; margin-bottom: 20px;" type="text" disabled value="Name"><br>
+                                <input style="width: 550px; height: 35px; border: solid 1px #333; padding-left: 10px; border-radius: 10px; font-size: 18px; margin-bottom: 20px;" type="text" disabled value="Username"><br>
+                                <input style="width: 550px; height: 35px; border: solid 1px #333; padding-left: 10px; border-radius: 10px; font-size: 18px; margin-bottom: 20x;" type="text" disabled value="Email"><br>
+                            </div>
+                            <div align="center" style="width: 220px; height: 220px; color: white; background-color: #007fff; border: solid 1px #007fff; border-radius: 20px; padding: 5px">
+                                <img style="border-radius: 15px;" src="{% static 'images/avatar.png' %}" alt="" height="220px" width="100%">
+                            </div>
+                        </div>
+                        <div style="display: flex; margin: 50px 0 20px 0; background-color: #0080ff52; width: wrap-content;"><div style="width: 5px; height: 30px; background-color: #007fff;"></div><div style="padding: 5px;">Skills</div></div>
+                        <div style="margin-bottom: 20px; padding: 50px; border: solid 1px #444; border-radius: 15px;">
+                           <button id="skills" style="font-size: 20px; height: 40px; padding: 5px 10px; border-radius: 15px; border: none; background-color: #0080ff20;">Add skill  <img src="{% static 'icons/plus-lg.svg' %}" alt="" srcset="" height="20" width="20"></button>
+                        </div>
+                        <div style="display: flex; margin: 50px 0 20px 0; background-color: #0080ff52; width: wrap-content;"><div style="width: 5px; height: 30px; background-color: #007fff;"></div><div style="padding: 5px;">Certificates</div></div>
+                        <div style="margin-bottom: 20px; padding: 50px; border: solid 1px #444; border-radius: 15px;">
+                           <button id="skills" style="font-size: 20px; height: 40px; padding: 5px 10px; border-radius: 15px; border: none; background-color: #0080ff20;">Add certificate  <img src="{% static 'icons/plus-lg.svg' %}" alt="" srcset="" height="20" width="20"></button>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% if page == 'client_update' %}
+                    <div>
+                        <span style="font-size: 40px; font-family: bahnschrift; color: #0f0f0fce; border-radius: 0 20px 20px 0; padding: 5px 10px 5px 10px; background-color: #0080ff42">Update Profile</span><hr style=" margin-bottom: 30px;">
+                        <div style="display: flex; width: 100%; justify-content: space-between;">
+                            <div id="signup">
+                                <form method="put">
+                                    {% csrf_token %}
+                                    <input style="height: 35px; width: 250px; border-radius: 10px; margin-bottom: 20px; border: solid 1px #666; padding-left: 10px;" type="text" name="firstname" id="" placeholder="Firstname"><br>
+                                    <input style="height: 35px; width: 250px; border-radius: 10px; margin-bottom: 20px; border: solid 1px #666; padding-left: 10px;" type="text" name="lastname" id="" placeholder="Lastname"><br>
+                                    <input style="height: 35px; width: 250px; border-radius: 10px; margin-bottom: 20px; border: solid 1px #666; padding-left: 10px;" type="text" name="username" id="" placeholder="Username"><br>
+                                    <input style="height: 35px; width: 250px; border-radius: 10px; margin-bottom: 20px; border: solid 1px #666; padding-left: 10px;" type="email" name="email" id="" placeholder="Email"><br>
+                                    <input style="height: 35px; width: 250px; border-radius: 10px; margin-bottom: 20px; border: solid 1px #666; padding: 10px;" type="file" name="img" id="" placeholder="Select profile image"><br>
+                                    <input style="height: 45px; width: 260px; border-radius: 10px; margin-bottom: 20px; border: none; background-color: #0080ff; color: white; padding-left: 10px;" type="submit" value="Update">
+                                </form>
+                            </div>
+                            <div align="center" style="width: 220px; height: 220px; color: white; background-color: #007fff; border: solid 1px #007fff; border-radius: 20px; padding: 5px">
+                                <img style="border-radius: 15px;" src="{% static 'images/avatar.png' %}" alt="" height="220px" width="100%">
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% if page == 'applications' %}
+                    <div style="background-color: #fff;">
+                        <span style="font-size: 40px; font-family: bahnschrift; color: #0f0f0fce; border-radius: 0 20px 20px 0; padding: 5px 10px 5px 10px; background-color: #0080ff42">Applications</span><hr style=" margin-bottom: 30px;">
+                        {% for application in applications %}
+                        {% if application != None %}
+                        <div style="background-color: #0080ff10; border-radius: 15px; padding: 10px 50px 10px 10px; margin-bottom: 20px; display: flexbox; width: 100%;">
+                            <div>
+                                <label for="title">Job title: &ThickSpace; &ThickSpace;</label>
+                                <span style="color: #333; font-size: 20px;" name="title">{{application.job_title}}</span><br>
+                                <label for="bid">Your bid: &ThickSpace; &ThickSpace;</label>
+                                <span name="bid">${{application.bid}}</span><br>
+                                <label>Cover Letter: &ThickSpace; &ThickSpace;</label>
+                                <p style="transform: translateY(-10px); font-size: 13px;">{{application.cover_letter}}</p>
+                            </div>
+                            <div style="float: right; transform: translateY(-60px);">
+                                <button style="height: 35px; width: 120px; border: none; background-color: #007fff; border-radius: 15px; color: white;">X Cancel</button>
+                            </div>
+                        </div>
+                        {% else %}
+                        <p>Nothing to show here</p>
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                    {% if page == 'hires' %}
+                    <span style="font-size: 40px; font-family: bahnschrift; color: #0f0f0fce; border-radius: 0 20px 20px 0; padding: 5px 10px 5px 10px; background-color: #0080ff42">Hires</span><hr style=" margin-bottom: 30px;">
+                    <p>Nothing to show here</p>
+                    {% endif %}
+                </div>
+            </div>
+            
+        </div>
+        <footer style="margin-top: 100px; ">
+            <div style="padding: 50px; background-color: #007fff; color: white; height: 300px; width: wrap-content; font-family: bahnschrift; border: none; border-radius: 30px 30px 0 0;">
+                <section style="display: flex; justify-content: space-around;">
+                    <section>Hello</section>
+                    <section>konichiwa</section>
+                    <section>Ola</section>
+                    <section>Aloha</section>
+                </section>
+                <hr style="height: 3px; border: none; background-color: white; border-radius: 50%;">
+                <section>&copy; 2023 - 2025 Reelance® Global Inc.</section>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

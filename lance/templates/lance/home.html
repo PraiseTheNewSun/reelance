@@ -1,0 +1,198 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reelance</title>
+    <style>
+        body{
+            margin: 0px;
+            padding: 0px;
+            width: 100%;
+        }
+        .navbar{
+            width: 100%;
+            height: 70px;
+            display: flexbox;
+            background-color: #007fff;
+        }
+        .navbar-logo{
+            float: left;
+            padding: 10px 0px 10px 20px;
+        }
+        .navbar-items{
+            float: right;
+            display: inline;
+            padding: 10px 20px 10px 0px;
+        }
+        a{
+            text-decoration: none;
+            
+        }
+        #navbar-items{
+            background-color: #007fff;
+            font-family: Arial, Helvetica, sans-serif;
+            padding: 0px 20px 0px 20px;
+            height: 50px;
+            width: 100px;
+            border-radius: 5px;
+            border: solid 1px white;
+            color: white;
+        }
+        #navbar-items:hover{
+            background-color: white;
+            padding: 0px 20px 0px 20px;
+            height: 50px;
+            width: 100px;
+            border-radius: 5px;
+            color: #007fff;
+        }
+        .landing{
+            height: 500px;
+            width: 100%;
+            background-color: #007fff;
+            display: flexbox;
+            border-radius: 0 0 30px 30px;
+            margin: 0px;
+        }
+        #button{
+            height: 100px;
+            width: 250px;
+            background-color: #0080ff10;
+            border-radius: 4px;
+            border: none;
+            margin: 0px 10px 20px 0px;
+            padding: 10px 0px 10px 10px;
+            font-size: 16px;
+            color: #121212;
+            text-align: top;
+        }
+        #button:hover{
+            background-color: #0080ff42;
+            color: rgb(1, 6, 54);
+        }
+        #start_button{
+            transform: translateY(-40px); 
+            height: 50px; 
+            width: 150px; 
+            border: solid 1px #fff; 
+            border-radius: 5px; 
+            color: #fff; 
+            background-color: #007fff
+        }
+        #start_button:hover{
+            color: #007fff;
+            background-color: #fff;
+        }
+        .button{
+            width: 300px;
+            height: 150px;
+            background-color: #007fff;
+            border-radius: 10px;
+            border: none;
+        }
+        .button:hover{
+            background-color: #fff;
+            color: #007fff;
+        }
+        #looking{
+            height: 100%; 
+            width: wrap-content; 
+            margin: 50px 20px; 
+            border-radius: 15px; 
+            background-image: url("{% static 'images/sukuna.jpg' %}")
+        }
+    </style>
+</head>
+<body>
+    <div style="display: block;">
+        <div class="navbar">
+            <div class="navbar-logo">
+                <img src="{% static 'images/logo.png' %}" alt="logo" width="100px" height="50px">
+            </div>
+            <div class="navbar-items">
+                <a href="{% url 'login' %}"><button id="navbar-items">Login</button></a>
+                <a href="{% url 'signup' %}"><button id="navbar-items">Sign Up</button></a>
+            </div>
+        </div>
+        <div class="landing">
+            <div style="transform: translateX(-120px); margin: 0px; width: 550px; float: left; padding: 130px 50px 0px 50px; font-family: bahnschrift;">
+                <p style="color: #fff; font-size: 50px;"><b>The number 1 </b><i>freelance</i><b> service gateway<br></b><span style="font-size: 15px; color: #fff; transform: translateY(-40px);">Bringing the right service to your fingertips</span></p>
+                <button id="start_button" type="button">Get started</button>
+            </div>
+            <div style="margin: 0px; float: right; padding: 50px 30px 0px 250px;">
+                <img src="{% static 'images/pngaaa.com-679922.png' %}" alt="man" height="450px" width="250px">
+            </div>
+        </div>
+        <div style="padding: 20px 50px 100px 50px; text-align: start;">
+            <p style="font-size: 45px; font-family: cambria; color: #2b2a2a;">Browse talent by category</p>
+            <div style="display: flexbox;">
+                <a href="#"><button id="button"><b><img src="{% static 'icons/keyboard-fill.svg' %}" alt="" srcset="" height="30" width="30"><br> Development & IT</b></button></a>
+                <a href="#"><button id="button"><b><img src="{% static 'icons/bank.svg' %}" alt="" srcset="" height="30" width="30"><br> Finance & Accounting</b></button></a>
+                <a href="#"><button id="button"><b><img src="{% static 'icons/gear-wide.svg' %}" alt="" srcset="" height="30" width="30"><br> Engineering & Architecture</b></button></a>
+                <a href="#"><button id="button"><b><img src="{% static 'icons/palette-fill.svg' %}" alt="" srcset="" height="30" width="30"><br> Design & Creative</b></button></a>
+                <a href="#"><button id="button"><b><img src="{% static 'icons/cpu.svg' %}" alt="" srcset="" height="30" width="30"><br> AI Sevices</b></button></a>
+                <a href="#"><button id="button"><b><img src="{% static 'icons/pen.svg' %}" alt="" srcset="" height="30" width="30"><br> Writing & Translation</b></button></a>
+                <a href="#"><button id="button"><b><img src="{% static 'icons/cart4.svg' %}" alt="" srcset="" height="30" width="30"><br> Sales & Marketing</b></button></a>
+                <a href="#"><button id="button"><b><img src="{% static 'icons/clipboard2-data.svg' %}" alt="" srcset="" height="30" width="30"><br> Search Engine Optimization</b></button></a>
+            </div>
+        </div>
+        <div style="display: inline-flex; height: 500px; width: 90%; padding: 50px; background-color: #007fff;">
+            <div align="left" style="color: rgb(1, 6, 54); font-family: Arial, Helvetica, sans-serif; font-size: 20px; padding: 50px 0 0 50px; width: 40%; background-color: white; color: #333; border-radius: 30px 0 0 30px;">
+                <p>
+                    <h1><b>Looking for jobs ?</b></h1>
+                    <span style="font-size: 15px; color: #333;">
+                        Well look no further, cause we have got you covered <br><br>
+                        Meet clients you’re excited <br> to work with and take
+                        your career or <br> business to new heights <br><br>
+                        Control when, where, and how you work <br><br>
+                        Access the top 1% of talent on <b><i>Reelance</i></b>, <br> and a full suite of hybrid workforce management tools. <br> This is how innovation works now
+                    </span>
+                </p>
+            </div>
+            <div align="right" style="padding: 50px; width: 60%; background-color: #fff; border-radius: 0 30px 30px 0;">
+                <img src="{% static 'images/lady.png' %}" alt="man" height="400px" width="400px">
+            </div>
+        </div>
+        <div style="height: 600px; width: 100%; display: block;">
+            <div id="looking">
+                <div style="justify-content: space-between; display: inline-flex; height: 150px; width: 100%; transform: translateY(400px); color: white;">
+                    <div class="button" style="margin: 0px 50px 0px 50px; padding: 20px 0px 0px 20px; font-size: 30px; font-family: helvetica;">Post a job <br>and hire a pro</div>
+                    <div class="button" style="margin: 0px 50px 0px 50px; padding: 20px 0px 00px 20px; font-size: 30px; font-family: helvetica;">Browse jobs <br>and apply</div>
+                    <div class="button" style="margin: 0px 50px 0px 50px; padding: 20px 0px 00px 20px; font-size: 30px; font-family: helvetica;">View testimonials</div>
+                </div>
+            </div>
+        </div>
+        <section style="display: flex; justify-content: space-around; margin-top: 100px;">
+            <div align="center" style="width: 325px; font-family: bahnschrift; height: 400px; border-radius: 30px; box-shadow: 0px 0px 40px 0px #0080ff52; background-color: #fff;">
+                <div style="width: 180px; height: 180px; margin-top: 50px; background-color: #007fff; border-radius: 90px;"></div>
+                <h3>John Jameson</h3>
+                <p style="margin: 0 50px; color: #333333; font-size: 14px;">I got a gig after just a month of browsing this platform</p>
+            </div>
+            <div align="center" style="width: 325px; font-family: bahnschrift; height: 400px; border-radius: 30px; box-shadow: 0px 0px 40px 0px #0080ff52; background-color: #fff;">
+                <div style="width: 180px; height: 180px; margin-top: 50px; background-color: #007fff; border-radius: 90px;"></div>
+                <h3>Phoebe Walker</h3>
+                <p style="margin: 0 50px; color: #333333; font-size: 14px;">This platform has been the best for me so far, it's got an easy means of applying for your gig of choice</p>
+            </div>
+            <div align="center" style="width: 325px; font-family: bahnschrift; height: 400px; border-radius: 30px; box-shadow: 0px 0px 40px 0px #0080ff52; background-color: #fff;">
+                <div style="width: 180px; height: 180px; margin-top: 50px; background-color: #007fff; border-radius: 90px;"></div>
+                <h3>Peter Parker</h3>
+                <p style="margin: 0 50px; color: #333333; font-size: 14px;">Super easy to use, hands a lot power to the freelancers <br> (me being one of them) and I'd 100% recommend</p>
+            </div>
+        </section>
+        <footer style="margin-top: 100px; ">
+            <div style="padding: 50px; background-color: #007fff; color: white; height: 300px; width: wrap-content; font-family: bahnschrift; border: none; border-radius: 30px 30px 0 0;">
+                <section style="display: flex; justify-content: space-around;">
+                    <section>Hello</section>
+                    <section>konichiwa</section>
+                    <section>Ola</section>
+                    <section>Aloha</section>
+                </section>
+                <hr style="height: 3px; border: none; background-color: white; border-radius: 50%;">
+                <section>&copy; 2023 - 2025 Reelance® Global Inc.</section>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

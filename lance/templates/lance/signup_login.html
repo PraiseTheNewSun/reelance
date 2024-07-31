@@ -1,0 +1,105 @@
+{% load static %}
+<style>
+    body{
+        margin: 0px;
+        padding: 0px;
+    }
+    .navbar{
+            width: 100%;
+            height: 70px;
+            display: flexbox;
+            background-color: #007fff;
+        }
+        .navbar-logo{
+            float: left;
+            padding: 10px 0px 10px 20px;
+        }
+        .navbar-items{
+            float: right;
+            display: inline;
+            padding: 10px 20px 10px 0px;
+        }
+        #navbar-items{
+            background-color: #007fff;
+            font-family: Arial, Helvetica, sans-serif;
+            padding: 0px 20px 0px 20px;
+            height: 50px;
+            width: 100px;
+            border-radius: 5px;
+            border: solid 1px white;
+            color: white;
+        }
+        #navbar-items:hover{
+            background-color: white;
+            padding: 0px 20px 0px 20px;
+            height: 50px;
+            width: 100px;
+            border-radius: 5px;
+            color: #007fff;
+        }
+        #login{
+            background-color: #0080ff10;
+            width: 300px;
+            height: wrap-content;
+            padding: 50px;
+            margin-top: 100px;
+            box-shadow: 0px 5px 15px 5px #0080ff42;
+            border-radius: 15px;
+            margin-bottom: 100px;
+        }
+        #signup{
+            background-color: #0080ff10;
+            width: 300px;
+            height: wrap-content;
+            padding: 50px;
+            margin-top: 100px;
+            box-shadow: 0px 5px 15px 5px #0080ff42;
+            border-radius: 15px;
+            margin-bottom: 100px;
+        }
+</style>
+<div class="navbar">
+    <div class="navbar-logo">
+        <img src="{% static 'images/logo.png' %}" alt="logo" width="100px" height="50px">
+    </div>
+</div>
+{% if page == 'login' %}
+<div align="center">
+    <div id="login">
+        <h1 style="font-family: bahnschrift; color: #333;">Login</h1>
+        <form method="post">
+            {% csrf_token %}
+            <input style="height: 35px; width: 250px; border-radius: 5px; margin-bottom: 20px; border: solid 1px #666; padding-left: 10px;" type="text" name="username" id="" placeholder="Username"><br>
+            <input style="height: 35px; width: 250px; border-radius: 5px; margin-bottom: 20px; border: solid 1px #666; padding-left: 10px;" type="password" name="password" id=""><br>
+            <input style="height: 35px; width: 250px; border-radius: 5px; margin-bottom: 20px; border: none; background-color: #0080ff; color: white;" type="submit" value="Log In">
+        </form>
+        <p style="font-family: bahnschrift;">Dont have an account yet ? <a style="text-decoration: none; color: #0080ff;" href="{% url 'signup' %}">SignUp</a></p>
+    </div>
+</div>
+{% endif %}
+{% if page == 'signup' %}
+<div align="center">
+    <div id="signup">
+        <h1 style="font-family: bahnschrift; color: #333;">SignUp</h1>
+        <form action="" method="post">
+            {% csrf_token %}
+            <input style="height: 35px; width: 250px; border-radius: 5px; margin-bottom: 20px; border: solid 1px #666; padding-left: 10px;" type="text" name="first_name" id="" placeholder="Firstname"><br>
+            <input style="height: 35px; width: 250px; border-radius: 5px; margin-bottom: 20px; border: solid 1px #666; padding-left: 10px;" type="text" name="last_name" id="" placeholder="Lastname"><br>
+            <input style="height: 35px; width: 250px; border-radius: 5px; margin-bottom: 20px; border: solid 1px #666; padding-left: 10px;" type="text" name="username" id="" placeholder="Username"><br>
+            <input style="height: 35px; width: 250px; border-radius: 5px; margin-bottom: 20px; border: solid 1px #666; padding-left: 10px;" type="email" name="email" id="" placeholder="Email"><br>
+            <input style="height: 35px; width: 250px; border-radius: 5px; margin-bottom: 20px; border: solid 1px #666; padding-left: 10px;" type="password" name="password" id="" placeholder="Password"><br>
+            <input style="height: 35px; width: 250px; border-radius: 5px; margin-bottom: 20px; border: none; background-color: #0080ff; color: white;" type="submit" value="Sign Up">
+        </form>
+        <p style="font-family: bahnschrift;">Already have an account ? <a style="text-decoration: none; color: #0080ff;" href="{% url 'login' %}">LogIn</a></p>
+    </div>
+</div>
+{% endif %}
+{% if page == 'logout' %}
+<div align="center">
+    <p style="font-size: 20px; font-family: bahnschrift;">Are you sure ?</p>
+    <form method="post">
+        {% csrf_token %}
+        <input style="background-color: #007fff; width: 100px; height: 35px; border: none; border-radius: 5px; color: white;" type="submit" value="Log Out">
+    </form>
+</div>
+{% endif %}

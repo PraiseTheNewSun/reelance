@@ -1,0 +1,166 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reelance</title>
+    <style>
+        body{
+            margin: 0px;
+            padding: 0px;
+            width: 100%;
+        }
+        .navbar{
+            width: 100%;
+            height: 70px;
+            display: flexbox;
+            background-color: #007fff;
+        }
+        .navbar-logo{
+            float: left;
+            padding: 10px 0px 10px 20px;
+        }
+        .navbar-items{
+            float: right;
+            display: inline;
+            padding: 10px 20px 10px 0px;
+        }
+        #navbar-items{
+            background-color: #007fff;
+            font-family: Arial, Helvetica, sans-serif;
+            padding: 0px 20px 0px 20px;
+            height: 50px;
+            width: 100px;
+            border-radius: 5px;
+            border: solid 1px white;
+            color: white;
+        }
+        #navbar-items:hover{
+            background-color: white;
+            padding: 0px 20px 0px 20px;
+            height: 50px;
+            width: 100px;
+            border-radius: 5px;
+            color: #007fff;
+        }
+        #items{
+            display: flex;
+            width: 100%;
+            margin: 0px;
+        }
+        #button{
+            /*background-color: #0080ff10; */
+            background-color: #007fff;
+            height: 50px; 
+            width: 250px; 
+            margin-bottom: 5px; 
+            border: none;
+            color: #fff;
+        }
+        #button:hover{
+            background-color: #0080ff42;
+            color: #007fff;
+        }
+    </style>
+</head>
+<body>
+    <div style="display: inline-flexbox; width: 100%;">
+        <div class="navbar">
+            <div class="navbar-logo">
+                <img src="{% static 'images/logo.png' %}" alt="logo" width="150px" height="50px">
+            </div>
+            <div class="navbar-items">
+                <a href="{% url 'logout' %}"><button id="navbar-items">Log Out</button></a>
+            </div>
+        </div>
+        {% if page == 'talent_page' %}
+        <div id="items">
+            <div align="center" style="width: 25%; height: 550px; padding: 40px 10px 0px 20px">
+                <div style=" background-color: #0080ff10; border-radius: 15px; padding: 40px 0px 40px 0px;">
+                    <div style="height: 100px; width: 100px; border: none; border-radius: 50px; background-color: #999999;">
+                        <img style="border-radius: 50%;" src="{% static 'images/avatar.png' %}" alt="" height="100%" width="100%">
+                    </div>
+                    <h3>{{request.user}}</h3>
+                    <a href="{% url 'talent-dashboard' %}"><button id="button" type="button" style="border-radius: 15px 15px 0 0;">Dashboard</button></a>
+                    <a href="{% url 'profile' %}"><button id="button" type="button" style="border-radius: 1px;">Profile</button></a>
+                    <a href="{% url 'jobs' %}"><button id="button" type="button" style="border-radius: 1px;">Jobs</button></a>
+                    <a href="{% url 'applications' %}"><button id="button" type="button" style="border-radius: 1px;">Applications</button></a>
+                    <a href="{% url 'hires' %}"><button id="button" type="button" style="border-radius: 0 0 15px 15px;">Hires</button></a>
+                </div>
+            </div>
+            <div style="width: 75%; height: wrap-content; padding: 40px 40px 0px 10px; font-family: bahnschrift">
+                <div style="border-radius: 5px; color: #444; height: wrap-content; padding: 10px 40px 40px 40px; font-family: bahnschrift; margin-top: -10px;">
+                    <span style="font-size: 40px; font-family: bahnschrift; color: #0f0f0fce; border-radius: 0 20px 20px 0; padding: 5px 10px 5px 10px; background-color: #0080ff42">Dashboard</span><hr style=" margin-bottom: 30px;">
+                    <div style="display: flex; height: 300px; width: 100%; background-color: #007fff; border: none; border-radius: 15px; padding: 50px 50px 0px 0px;">
+                        <div style="width: 250px; height: 250px; border: none; border-radius: 15px 0px 0px 15px; background-color: #999999; transform: translateX(50px); border-right: solid 5px #007fff">
+                            <img style="border-radius: 15px 0 0 15px;" src="{% static 'images/avatar.png' %}" alt="" height="100%" width="100%">
+                        </div>
+                        <div style="width: 60%; height: 250px; transform: translateX(50px); background-color: white; padding-left: 20px; border-radius: 0px 15px 15px 0px;">
+                            <h4 style="font-size: 35px; transform: translateY(-30px); margin-bottom: 0px;">Python Web Developer</h4><hr style="width: 100%; margin-left: -20px; transform: translateY(-30px); height: 5px; border: none; background-color: #007fff;">
+                            <p style=" font-size: 15px; margin-top: -30px;">Name:</p>
+                            <p style=" font-size: 15px; margin-top: -10px;">Username:</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer style="margin-top: 100px; ">
+            <div style="padding: 50px; background-color: #007fff; color: white; height: 300px; width: wrap-content; font-family: bahnschrift; border: none; border-radius: 30px 30px 0 0;">
+                <section style="display: flex; justify-content: space-around;">
+                    <section>Hello</section>
+                    <section>konichiwa</section>
+                    <section>Ola</section>
+                    <section>Aloha</section>
+                </section>
+                <hr style="height: 3px; border: none; background-color: white; border-radius: 50%;">
+                <section>&copy; 2023 - 2025 Reelance® Global Inc.</section>
+            </div>
+        </footer>
+        {% endif %}
+        {% if page == 'client_page' %}
+        <div id="items">
+            <div align="center" style="width: 25%; height: 550px; padding: 40px 10px 0px 20px">
+                <div style=" background-color: #0080ff10; border-radius: 15px; padding: 40px 0px 40px 0px;">
+                    <div style="height: 100px; width: 100px; border: none; border-radius: 50px; background-color: #999999;">
+                        <img style="border-radius: 50%;" src="{% static 'images/avatar.png' %}" alt="" height="100%" width="100%">
+                    </div>
+                    <h3>{{request.user}}</h3>
+                    <a href="{% url 'client-dashboard' %}"><button id="button" type="button" style="border-radius: 15px 15px 0 0;">Dashboard</button></a>
+                    <a href="{% url 'client-profile' %}"><button id="button" type="button" style="border-radius: 1px;">Profile</button></a>
+                    <a href="{% url 'client-jobs' %}"><button id="button" type="button" style="border-radius: 1px;">Jobs</button></a>
+                    <a href="{% url 'client-applications' %}"><button id="button" type="button" style="border-radius: 1px;">Applications</button></a>
+                    <a href="{% url 'client-hires' %}"><button id="button" type="button" style="border-radius: 0 0 15px 15px;">Hires</button></a>
+                </div>
+            </div>
+            <div style="width: 75%; height: wrap-content; padding: 40px 40px 0px 10px; font-family: bahnschrift">
+                <div style="border-radius: 5px; color: #444; height: wrap-content; padding: 10px 40px 40px 40px; font-family: bahnschrift; margin-top: -10px;">
+                    <span style="font-size: 40px; font-family: bahnschrift; color: #0f0f0fce; border-radius: 0 20px 20px 0; padding: 5px 10px 5px 10px; background-color: #0080ff42">Client Dashboard</span><hr style=" margin-bottom: 30px;">
+                    <div style="box-shadow: 0px 0px 5px 0px #0080ff; display: flex; height: 300px; width: 100%; background-color: #fff; border: none; border-radius: 15px; padding: 50px 50px 0px 0px;">
+                        <div style="width: 250px; height: 250px; border: none; border-radius: 50px; background-color: #999999; transform: translateX(50px);">
+                            <img style="border-radius: 50px;" src="" alt="" height="100%" width="100%">
+                        </div>
+                        <div style="width: 60%; height: 250px; transform: translate(50px, 50px); background-color: white; padding-left: 20px; border-radius: 0px 15px 15px 0px;">
+                            <p style=" font-size: 15px; margin-top: -30px;">Name:</p>
+                            <p style=" font-size: 15px; margin-top: -10px;">Username: {{request.user}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer style="margin-top: 100px; ">
+            <div style="padding: 50px; background-color: #007fff; color: white; height: 300px; width: wrap-content; font-family: bahnschrift; border: none; border-radius: 30px 30px 0 0;">
+                <section style="display: flex; justify-content: space-around;">
+                    <section>Hello</section>
+                    <section>konichiwa</section>
+                    <section>Ola</section>
+                    <section>Aloha</section>
+                </section>
+                <hr style="height: 3px; border: none; background-color: white; border-radius: 50%;">
+                <section>&copy; 2023 - 2025 Reelance® Global Inc.</section>
+            </div>
+        </footer>
+        {% endif %}
+    </div>
+</body>
+</html>
