@@ -7,6 +7,7 @@ pip install sqlparse==0.4.4
 pip install tzdata==2024.1 
 pip install urllib3==2.2.1 
 pip install whitenoise==6.6.0
+pip install psycopg
 python manage.py makemigrations
 python manage.py migrate
 python manage.py collectstatic --no-input
