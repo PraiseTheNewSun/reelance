@@ -76,7 +76,7 @@ WSGI_APPLICATION = 'Reelance.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
+        'ENGINE': 'django.db.backends.postgresql',
         'USER': 'thenewsun',
         'NAME': 'generaldb_osqh',
         'PASSWORD': 'pjN4IsCPGP6uszSqNSjBBE0EeGzt7eXR',
