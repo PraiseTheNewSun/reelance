@@ -76,12 +76,8 @@ WSGI_APPLICATION = 'Reelance.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'USER': 'thenewsun',
-        'NAME': 'generaldb_osqh',
-        'PASSWORD': 'pjN4IsCPGP6uszSqNSjBBE0EeGzt7eXR',
-        'HOST':'dpg-cql3omrqf0us73bto3ug-a',
-        'PORT':'5432',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 

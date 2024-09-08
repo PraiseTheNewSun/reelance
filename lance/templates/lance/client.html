@@ -4,7 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>
+        {% if page == 'jobs' %}
+        Reelance | Client Jobs
+        {% elif page == 'profile' %}
+        Reelance | Client Profile
+        {% elif page == 'hires' %}
+        Reelance | Client Hires
+        {% elif page == 'applications' %}
+        Reelance | Client Applications
+        {% endif %}
+    </title>
     <style>
         body{
             margin: 0px;
@@ -32,7 +42,7 @@
             padding: 0px 20px 0px 20px;
             height: 50px;
             width: 100px;
-            border-radius: 5px;
+            border-radius: 25px;
             border: solid 1px white;
             color: white;
         }
@@ -41,7 +51,6 @@
             padding: 0px 20px 0px 20px;
             height: 50px;
             width: 100px;
-            border-radius: 5px;
             color: #007fff;
         }
         #items{
@@ -60,6 +69,12 @@
         #button:hover{
             background-color: #0080ff42;
             color: #007fff;
+        }
+        #view_details{
+            background-color: #0080ffa1;
+        }
+        #view_details:hover{
+            background-color: #007fff;
         }
     </style>
 </head>
@@ -80,50 +95,101 @@
                         <img style="border-radius: 50%;" src="{% static 'images/avatar.png' %}" alt="" height="100%" width="100%">
                     </div>
                     <h3>{{request.user}}</h3>
-                    <a href="{% url 'client-dashboard' %}"><button id="button" type="button" style="border-radius: 15px 15px 0 0;">Dashboard</button></a>
-                    <a href="{% url 'client-profile' %}"><button id="button" type="button" style="border-radius: 1px;">Profile</button></a>
-                    <a href="{% url 'client-jobs' %}"><button id="button" type="button" style="border-radius: 1px;">Jobs</button></a>
-                    <a href="{% url 'client-applications' %}"><button id="button" type="button" style="border-radius: 1px;">Applications</button></a>
-                    <a href="{% url 'client-hires' %}"><button id="button" type="button" style="border-radius: 0 0 15px 15px;">Hires</button></a>
+                    <a href="{% url 'client-dashboard' %}"><button id="button" type="button" style="border-radius: 0 25px 25px 0;">Dashboard</button></a>
+                    <a href="{% url 'client-profile' %}"><button id="button" type="button" style="border-radius: 0 25px 25px 0;">Profile</button></a>
+                    <a href="{% url 'client-jobs' %}"><button id="button" type="button" style="border-radius: 0 25px 25px 0;">Create jobs</button></a>
+                    <a href="{% url 'client-applications' %}"><button id="button" type="button" style="border-radius: 0 25px 25px 0;">Applications</button></a>
+                    <a href="{% url 'client-hires' %}"><button id="button" type="button" style="border-radius: 0 25px 25px 0;">Hires</button></a>
                 </div>
             </div>
             <div style="width: 75%; height: wrap-content; padding: 40px 40px 0px 10px; font-family: bahnschrift">
                 <div style="border-radius: 5px; height: wrap-content; padding: 0 40px 40px 40px;">
                     {% if page == 'jobs' %}
                     <span style="font-size: 40px; font-family: bahnschrift; color: #0f0f0fce; border-radius: 0 20px 20px 0; padding: 5px 10px 5px 10px; background-color: #0080ff42">Jobs</span><hr style=" margin-bottom: 30px;">
-                    <p>Nothing to show here</p>
-                    <button style="background-color: #007fff; color: #fff; height: 40px; width: 100px; border: none; border-radius: 20px;" type="button">Create job <span style="height: 50px; width: 50px;">+</span></button>
+                        {% for job in jobs %}
+                            {% if job != None %}
+                                <div style="background-color: #0080ff42; padding: 20px; border-radius: 15px; margin: 0 0 20px 0;">
+                                    <label style="font-size: 18px;" for=""><b>Title:&ThickSpace;</b></label>
+                                    <span style="font-size:  15px;">{{job.title}}</span> <br>
+                                    <label style="font-size: 18px;" for=""><b>Description:&ThickSpace;</b></label>
+                                    <span style="font-size: 15px;"> {{job.description}}</span><br>
+                                    <label style="font-size: 18px;" for=""><b>Your budget:&ThickSpace;</b></label>
+                                    <span style="font-size: 15px;">${{job.budget}}</span>
+                                </div>
+                            {% else %}
+                                Nothing to show here
+                            {% endif %}
+                        {% endfor %}
+                    <div style="margin-top: 50px;">
+                        <span style="font-size: 40px; font-family: Arial, Helvetica, sans-serif; color: #121212; border-radius: 0 20px 20px 0; padding: 5px 10px 5px 0px;">Create a job</span>
+                        <form method="post" style="margin-top: 30px;">
+                            {% csrf_token %}
+                            <input style="width: 550px; height: 35px; border: solid 1px #333; padding-left: 10px; border-radius: 10px; font-size: 18px; margin-bottom: 20px;" type="text" name="job_title" id="" placeholder="Job title"><br>
+                            <textarea style="width: 550px; height: 200px; border: solid 1px #333; padding-left: 10px; border-radius: 10px; font-size: 18px; margin-bottom: 20px; font-family: bahnschrift;" name="job_description" id="" placeholder="Job description"></textarea><br>
+                            <input style="width: 550px; height: 35px; border: solid 1px #333; padding-left: 10px; border-radius: 10px; font-size: 18px; margin-bottom: 20px;" type="number" name="budget" id="" placeholder="Budget"><br>
+                            <input style="background-color: #007fff; color: #fff; height: 40px; width: 100px; border: none; border-radius: 20px;" type="submit" value="Create job">
+                        </form>
+                    </div>
                     {% endif %}
                     {% if page == 'profile' %}
                     <div>
-                        <span style="font-size: 40px; font-family: bahnschrift; color: #0f0f0fce; border-radius: 0 20px 20px 0; padding: 5px 10px 5px 10px; background-color: #0080ff42">Client Profile</span><hr style=" margin-bottom: 30px;">
+                        <span style="font-size: 40px; font-family: bahnschrift; color: #0f0f0fce; border-radius: 0 20px 20px 0; padding: 5px 10px 5px 10px; background-color: #0080ff42">Profile</span><hr style=" margin-bottom: 30px;">
                         <div style="display: flex; justify-content: space-between;">
                             <div>
                                 <label for="">Fullname</label>
-                                <input style="width: 550px; height: 35px; border: solid 1px #333; padding-left: 10px; border-radius: 10px; font-size: 18px; margin-bottom: 20px;" type="text" disabled value="{{user.first_name}} {{user.last_name}}"><br>
+                                <input style="width: 550px; height: 35px; border: solid 1px #333; padding-left: 10px; border-radius: 10px; font-size: 18px; margin-bottom: 20px;" type="text" disabled value="{{user.first_name}} {{user.last_name.capitalize}}"><br>
                                 <label for="">Username</label>
                                 <input style="width: 550px; height: 35px; border: solid 1px #333; padding-left: 10px; border-radius: 10px; font-size: 18px; margin-bottom: 20px;" type="text" disabled value="{{user.username}}"><br>
-                                <label for="">Email</label>
+                                <label for="">Email</label><br>
                                 <input style="width: 550px; height: 35px; border: solid 1px #333; padding-left: 10px; border-radius: 10px; font-size: 18px; margin-bottom: 20x;" type="text" disabled value="{{user.email}}"><br>
                             </div>
-                            <div align="center" style="width: 250px; height: 250px; background-color: #007fff; border-radius: 50px;">
-                                <img style="border-radius: 45px;" src="" alt="" height="100%" width="100%">
+                            <div align="center" style="width: 250px; height: 250px; background-color: #007fff;">
+                                <img style="border-radius: 5px;" src="{% static 'images/lady.png' %}" alt="" height="100%" width="100%">
                             </div>
                         </div>
                     </div>
                     {% endif %}
                     {% if page == 'applications' %}
-                    <div style="background-color: #fff; color: #333;">
-                        <span style="font-size: 40px; font-family: bahnschrift; color: #0f0f0fce; border-radius: 0 20px 20px 0; padding: 5px 10px 5px 10px; background-color: #0080ff42">Client Applications</span><hr style=" margin-bottom: 30px;">
-                        {% for application in applications %} 
+                    <span style="font-size: 40px; font-family: bahnschrift; color: #0f0f0fce; border-radius: 0 20px 20px 0; padding: 5px 10px 5px 10px; background-color: #0080ff42">Applications</span><hr style=" margin-bottom: 30px;">
+                        {% for application in applications %}
                             {% if application != None %}
-                            <h1>{{application.title}}</h1>
+                            <div style="background-color: #0080ff10; border-radius: 15px; padding: 10px 10px 10px 10px; margin-bottom: 20px; display: flexbox; width: 100%;">
+                                <div style="display: inline-flex; width: 100%; justify-content: space-between;">
+                                    <div style="width: wrap-content;">
+                                        <span style="color: #333; font-size: 20px;" name="title">{{ application.applicant_name }} <span style="color: #000; font-size: 15px;">applied for the</span> " {{application.job_title.capitalize}} " job</span><br>
+                                    </div>
+                                    <div style="float: right;">
+                                        <!--<button id="view_details" style="height: 35px; width: 120px; border: none; border-radius: 5px; color: white;">View details</button>
+                                        <button id="view_less" style="height: 35px; width: 120px; border: none; border-radius: 5px; color: white;"> Hide details</button>
+                                        <script>
+                                            view_details = document.getElementById('view_details');
+                                            view_less = document.getElementById('view_less');
+                                            details = document.getElementById('details');
+            
+                                            view_details.onclick = function ViewDetails(){
+                                                details.style.display = 'block';
+                                                view_less.style.display = 'block';
+                                                view_details.style.display = 'none';
+                                            };
+                                            view_less.onclick = function ViewLess(){
+                                                details.style.display = 'none';
+                                                view_details.style.display = 'block';
+                                                view_less.style.display = 'none';
+                                            };
+                                        </script>-->
+                                    </div>
+                                </div><br>
+                                <div id="details" style="display: block;">
+                                    <label>Applicant bidded  &ThickSpace; &ThickSpace;</label><br>
+                                    <span style="font-size: 13px;" name="bid">${{application.bid}}</span><br>
+                                    <label>Applicant's Cover Letter &ThickSpace; &ThickSpace;</label><br>
+                                    <span style="font-size: 13px;">" <i>{{application.cover_letter}} Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsam dolore quaerat commodi corrupti. Totam voluptatibus repellendus alias ipsam, delectus, libero recusandae esse officia, accusamus similique minima commodi harum unde adipisci?</i> "</span>
+                                </div>
+                            </div>
                             {% else %}
-                            <h1>{{application.title}}</h1>
-                            <p>Nothing to show here</p>
+                                Nothing to show here
                             {% endif %}
-                        {% endfor %}         
-                    </div>
+                        {% endfor %}
                     {% endif %}
                     {% if page == 'hires' %}
                     <span style="font-size: 40px; font-family: bahnschrift; color: #0f0f0fce; border-radius: 0 20px 20px 0; padding: 5px 10px 5px 10px; background-color: #0080ff42">Hires</span><hr style=" margin-bottom: 30px;">
@@ -134,7 +200,7 @@
             
         </div>
         <footer style="margin-top: 100px; ">
-            <div style="padding: 50px; background-color: #007fff; color: white; height: 300px; width: wrap-content; font-family: bahnschrift; border: none; border-radius: 30px 30px 0 0;">
+            <div style="padding: 50px; background-color: #007fff; color: white; height: 50px; width: wrap-content; font-family: bahnschrift; border: none; border-radius: 30px 30px 0 0;">
                 <section style="display: flex; justify-content: space-around;">
                     <section>Hello</section>
                     <section>konichiwa</section>

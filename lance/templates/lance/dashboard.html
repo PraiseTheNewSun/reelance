@@ -4,7 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reelance</title>
+    <title>
+        {% if page == 'client_page' %}
+        Reelance | Client Dashboard
+        {% endif %}
+    </title>
     <style>
         body{
             margin: 0px;
@@ -32,7 +36,7 @@
             padding: 0px 20px 0px 20px;
             height: 50px;
             width: 100px;
-            border-radius: 5px;
+            border-radius: 25px;
             border: solid 1px white;
             color: white;
         }
@@ -41,7 +45,6 @@
             padding: 0px 20px 0px 20px;
             height: 50px;
             width: 100px;
-            border-radius: 5px;
             color: #007fff;
         }
         #items{
@@ -82,11 +85,11 @@
                         <img style="border-radius: 50%;" src="{% static 'images/avatar.png' %}" alt="" height="100%" width="100%">
                     </div>
                     <h3>{{request.user}}</h3>
-                    <a href="{% url 'talent-dashboard' %}"><button id="button" type="button" style="border-radius: 15px 15px 0 0;">Dashboard</button></a>
-                    <a href="{% url 'profile' %}"><button id="button" type="button" style="border-radius: 1px;">Profile</button></a>
-                    <a href="{% url 'jobs' %}"><button id="button" type="button" style="border-radius: 1px;">Jobs</button></a>
-                    <a href="{% url 'applications' %}"><button id="button" type="button" style="border-radius: 1px;">Applications</button></a>
-                    <a href="{% url 'hires' %}"><button id="button" type="button" style="border-radius: 0 0 15px 15px;">Hires</button></a>
+                    <a href="{% url 'talent-dashboard' %}"><button id="button" type="button" style="border-radius: 0 25px 25px 0;">Dashboard</button></a>
+                    <a href="{% url 'profile' %}"><button id="button" type="button" style="border-radius: 0 25px 25px 0;">Profile</button></a>
+                    <a href="{% url 'jobs' %}"><button id="button" type="button" style="border-radius: 0 25px 25px 0;">Jobs</button></a>
+                    <a href="{% url 'applications' %}"><button id="button" type="button" style="border-radius: 0 25px 25px 0;">Applications</button></a>
+                    <a href="{% url 'hires' %}"><button id="button" type="button" style="border-radius: 0 25px 25px 0;">Hires</button></a>
                 </div>
             </div>
             <div style="width: 75%; height: wrap-content; padding: 40px 40px 0px 10px; font-family: bahnschrift">
@@ -106,7 +109,7 @@
             </div>
         </div>
         <footer style="margin-top: 100px; ">
-            <div style="padding: 50px; background-color: #007fff; color: white; height: 300px; width: wrap-content; font-family: bahnschrift; border: none; border-radius: 30px 30px 0 0;">
+            <div style="padding: 50px; background-color: #007fff; color: white; height: 50px; width: wrap-content; font-family: bahnschrift; border: none; border-radius: 30px 30px 0 0;">
                 <section style="display: flex; justify-content: space-around;">
                     <section>Hello</section>
                     <section>konichiwa</section>
@@ -126,30 +129,30 @@
                         <img style="border-radius: 50%;" src="{% static 'images/avatar.png' %}" alt="" height="100%" width="100%">
                     </div>
                     <h3>{{request.user}}</h3>
-                    <a href="{% url 'client-dashboard' %}"><button id="button" type="button" style="border-radius: 15px 15px 0 0;">Dashboard</button></a>
-                    <a href="{% url 'client-profile' %}"><button id="button" type="button" style="border-radius: 1px;">Profile</button></a>
-                    <a href="{% url 'client-jobs' %}"><button id="button" type="button" style="border-radius: 1px;">Jobs</button></a>
-                    <a href="{% url 'client-applications' %}"><button id="button" type="button" style="border-radius: 1px;">Applications</button></a>
-                    <a href="{% url 'client-hires' %}"><button id="button" type="button" style="border-radius: 0 0 15px 15px;">Hires</button></a>
+                    <a href="{% url 'client-dashboard' %}"><button id="button" type="button" style="border-radius: 0 25px 25px 0;">Dashboard</button></a>
+                    <a href="{% url 'client-profile' %}"><button id="button" type="button" style="border-radius: 0 25px 25px 0;">Profile</button></a>
+                    <a href="{% url 'client-jobs' %}"><button id="button" type="button" style="border-radius: 0 25px 25px 0;">Create jobs</button></a>
+                    <a href="{% url 'client-applications' %}"><button id="button" type="button" style="border-radius: 0 25px 25px 0;">Applications</button></a>
+                    <a href="{% url 'client-hires' %}"><button id="button" type="button" style="border-radius: 0 25px 25px 0;">Hires</button></a>
                 </div>
             </div>
             <div style="width: 75%; height: wrap-content; padding: 40px 40px 0px 10px; font-family: bahnschrift">
                 <div style="border-radius: 5px; color: #444; height: wrap-content; padding: 10px 40px 40px 40px; font-family: bahnschrift; margin-top: -10px;">
-                    <span style="font-size: 40px; font-family: bahnschrift; color: #0f0f0fce; border-radius: 0 20px 20px 0; padding: 5px 10px 5px 10px; background-color: #0080ff42">Client Dashboard</span><hr style=" margin-bottom: 30px;">
-                    <div style="box-shadow: 0px 0px 5px 0px #0080ff; display: flex; height: 300px; width: 100%; background-color: #fff; border: none; border-radius: 15px; padding: 50px 50px 0px 0px;">
-                        <div style="width: 250px; height: 250px; border: none; border-radius: 50px; background-color: #999999; transform: translateX(50px);">
-                            <img style="border-radius: 50px;" src="" alt="" height="100%" width="100%">
-                        </div>
-                        <div style="width: 60%; height: 250px; transform: translate(50px, 50px); background-color: white; padding-left: 20px; border-radius: 0px 15px 15px 0px;">
-                            <p style=" font-size: 15px; margin-top: -30px;">Name:</p>
-                            <p style=" font-size: 15px; margin-top: -10px;">Username: {{request.user}}</p>
-                        </div>
+                    <span style="font-size: 40px; font-family: bahnschrift; color: #0f0f0fce; border-radius: 0 20px 20px 0; padding: 5px 10px 5px 10px; background-color: #0080ff42">Dashboard</span><hr style=" margin-bottom: 30px;">
+                    <div style="justify-content: space-around; display: block; height: wrap-content; width: 100%; background-color: #fff; border: none; border-radius: 15px; padding-left: 50px;">
+                        <img style="margin-bottom: 30px;" src="{% static 'images/trend.png' %}" alt="">
+                        <img src="{% static 'images/percent.png' %}" alt="">
                     </div>
                 </div>
+                <b>Metrics</b><br>
+                You have posted {{ number_of_jobs }} jobs since joining <br>
+                **trend graph <br>
+                Talents on the platform have applied to 55% of the your posted jobs <br>
+                **pie chart
             </div>
         </div>
         <footer style="margin-top: 100px; ">
-            <div style="padding: 50px; background-color: #007fff; color: white; height: 300px; width: wrap-content; font-family: bahnschrift; border: none; border-radius: 30px 30px 0 0;">
+            <div style="padding: 50px; background-color: #007fff; color: white; height: 50px; width: wrap-content; font-family: bahnschrift; border: none; border-radius: 30px 30px 0 0;">
                 <section style="display: flex; justify-content: space-around;">
                     <section>Hello</section>
                     <section>konichiwa</section>

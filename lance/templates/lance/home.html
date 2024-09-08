@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reelance</title>
+    <title>Reelance | A Freelance Marketplace</title>
     <style>
         body{
             margin: 0px;
@@ -25,6 +25,8 @@
             float: right;
             display: inline;
             padding: 10px 20px 10px 0px;
+            width: 30%;
+            justify-content: space-between;
         }
         a{
             text-decoration: none;
@@ -36,16 +38,18 @@
             padding: 0px 20px 0px 20px;
             height: 50px;
             width: 100px;
-            border-radius: 5px;
+            border-radius: 25px;
             border: solid 1px white;
             color: white;
+            float: right;
+            margin-left: 20px;
         }
         #navbar-items:hover{
             background-color: white;
             padding: 0px 20px 0px 20px;
             height: 50px;
             width: 100px;
-            border-radius: 5px;
+            border-radius: 25px;
             color: #007fff;
         }
         .landing{
@@ -77,7 +81,7 @@
             height: 50px; 
             width: 150px; 
             border: solid 1px #fff; 
-            border-radius: 5px; 
+            border-radius: 25px; 
             color: #fff; 
             background-color: #007fff
         }
@@ -101,7 +105,21 @@
             width: wrap-content; 
             margin: 50px 20px; 
             border-radius: 15px; 
-            background-image: url("{% static 'images/sukuna.jpg' %}")
+            background-image: url("{% static 'images/bottom-image.jpg' %}");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        #testimonial1{
+            background-image: url("{% static 'images/jj.jpg' %}");
+            background-size: cover
+        }
+        #testimonial2{
+            background-image: url("{% static 'images/pw.jpg' %}");
+            background-size: cover
+        }
+        #testimonial3{
+            background-image: url("{% static 'images/pp.jpg' %}");
+            background-size: cover
         }
     </style>
 </head>
@@ -119,7 +137,9 @@
         <div class="landing">
             <div style="transform: translateX(-120px); margin: 0px; width: 550px; float: left; padding: 130px 50px 0px 50px; font-family: bahnschrift;">
                 <p style="color: #fff; font-size: 50px;"><b>The number 1 </b><i>freelance</i><b> service gateway<br></b><span style="font-size: 15px; color: #fff; transform: translateY(-40px);">Bringing the right service to your fingertips</span></p>
-                <button id="start_button" type="button">Get started</button>
+                <a href="{% url 'signup' %}">
+                    <button id="start_button" type="button">Get started</button>
+                </a>
             </div>
             <div style="margin: 0px; float: right; padding: 50px 30px 0px 250px;">
                 <img src="{% static 'images/pngaaa.com-679922.png' %}" alt="man" height="450px" width="250px">
@@ -127,15 +147,19 @@
         </div>
         <div style="padding: 20px 50px 100px 50px; text-align: start;">
             <p style="font-size: 45px; font-family: cambria; color: #2b2a2a;">Browse talent by category</p>
-            <div style="display: flexbox;">
-                <a href="#"><button id="button"><b><img src="{% static 'icons/keyboard-fill.svg' %}" alt="" srcset="" height="30" width="30"><br> Development & IT</b></button></a>
-                <a href="#"><button id="button"><b><img src="{% static 'icons/bank.svg' %}" alt="" srcset="" height="30" width="30"><br> Finance & Accounting</b></button></a>
-                <a href="#"><button id="button"><b><img src="{% static 'icons/gear-wide.svg' %}" alt="" srcset="" height="30" width="30"><br> Engineering & Architecture</b></button></a>
-                <a href="#"><button id="button"><b><img src="{% static 'icons/palette-fill.svg' %}" alt="" srcset="" height="30" width="30"><br> Design & Creative</b></button></a>
-                <a href="#"><button id="button"><b><img src="{% static 'icons/cpu.svg' %}" alt="" srcset="" height="30" width="30"><br> AI Sevices</b></button></a>
-                <a href="#"><button id="button"><b><img src="{% static 'icons/pen.svg' %}" alt="" srcset="" height="30" width="30"><br> Writing & Translation</b></button></a>
-                <a href="#"><button id="button"><b><img src="{% static 'icons/cart4.svg' %}" alt="" srcset="" height="30" width="30"><br> Sales & Marketing</b></button></a>
-                <a href="#"><button id="button"><b><img src="{% static 'icons/clipboard2-data.svg' %}" alt="" srcset="" height="30" width="30"><br> Search Engine Optimization</b></button></a>
+            <div style="display: block;">
+                <div style="display: flex; justify-content: space-evenly;">
+                    <a href="#"><button id="button"><b><img src="{% static 'icons/keyboard-fill.svg' %}" alt="" srcset="" height="30" width="30"><br> Development & IT</b></button></a>
+                    <a href="#"><button id="button"><b><img src="{% static 'icons/bank.svg' %}" alt="" srcset="" height="30" width="30"><br> Finance & Accounting</b></button></a>
+                    <a href="#"><button id="button"><b><img src="{% static 'icons/gear-wide.svg' %}" alt="" srcset="" height="30" width="30"><br> Engineering & Architecture</b></button></a>
+                    <a href="#"><button id="button"><b><img src="{% static 'icons/palette-fill.svg' %}" alt="" srcset="" height="30" width="30"><br> Design & Creative</b></button></a> 
+                </div>
+                <div style="display: flex; justify-content: space-evenly;">
+                    <a href="#"><button id="button"><b><img src="{% static 'icons/cpu.svg' %}" alt="" srcset="" height="30" width="30"><br> AI Sevices</b></button></a>
+                    <a href="#"><button id="button"><b><img src="{% static 'icons/pen.svg' %}" alt="" srcset="" height="30" width="30"><br> Writing & Translation</b></button></a>
+                    <a href="#"><button id="button"><b><img src="{% static 'icons/cart4.svg' %}" alt="" srcset="" height="30" width="30"><br> Sales & Marketing</b></button></a>
+                    <a href="#"><button id="button"><b><img src="{% static 'icons/clipboard2-data.svg' %}" alt="" srcset="" height="30" width="30"><br> Search Engine Optimization</b></button></a>
+                </div>
             </div>
         </div>
         <div style="display: inline-flex; height: 500px; width: 90%; padding: 50px; background-color: #007fff;">
@@ -166,17 +190,17 @@
         </div>
         <section style="display: flex; justify-content: space-around; margin-top: 100px;">
             <div align="center" style="width: 325px; font-family: bahnschrift; height: 400px; border-radius: 30px; box-shadow: 0px 0px 40px 0px #0080ff52; background-color: #fff;">
-                <div style="width: 180px; height: 180px; margin-top: 50px; background-color: #007fff; border-radius: 90px;"></div>
+                <div id="testimonial1" style="width: 180px; height: 180px; margin-top: 50px; background-color: #007fff; border-radius: 90px;"></div>
                 <h3>John Jameson</h3>
                 <p style="margin: 0 50px; color: #333333; font-size: 14px;">I got a gig after just a month of browsing this platform</p>
             </div>
             <div align="center" style="width: 325px; font-family: bahnschrift; height: 400px; border-radius: 30px; box-shadow: 0px 0px 40px 0px #0080ff52; background-color: #fff;">
-                <div style="width: 180px; height: 180px; margin-top: 50px; background-color: #007fff; border-radius: 90px;"></div>
+                <div id="testimonial2" style="width: 180px; height: 180px; margin-top: 50px; background-color: #007fff; border-radius: 90px;"></div>
                 <h3>Phoebe Walker</h3>
                 <p style="margin: 0 50px; color: #333333; font-size: 14px;">This platform has been the best for me so far, it's got an easy means of applying for your gig of choice</p>
             </div>
             <div align="center" style="width: 325px; font-family: bahnschrift; height: 400px; border-radius: 30px; box-shadow: 0px 0px 40px 0px #0080ff52; background-color: #fff;">
-                <div style="width: 180px; height: 180px; margin-top: 50px; background-color: #007fff; border-radius: 90px;"></div>
+                <div id="testimonial3" style="width: 180px; height: 180px; margin-top: 50px; background-color: #007fff; border-radius: 90px;"></div>
                 <h3>Peter Parker</h3>
                 <p style="margin: 0 50px; color: #333333; font-size: 14px;">Super easy to use, hands a lot power to the freelancers <br> (me being one of them) and I'd 100% recommend</p>
             </div>

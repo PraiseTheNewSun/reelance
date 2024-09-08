@@ -35,6 +35,7 @@ class Application(models.Model):
     bid = models.IntegerField(null=True)
     cover_letter = models.TextField(max_length=1000)
     applicant_name = models.CharField(max_length=100)
+    #hired = models.BooleanField()
 
     def __str__(self):
         return self.applicant_name

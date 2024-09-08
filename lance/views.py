@@ -115,9 +115,13 @@ def TalentHires(request):
 
 ##### CLIENT #####
 def ClientDashboard(request):
+    jobs = PostJob.objects.filter(author=request.user)
+    number_of_jobs = len(jobs)
+    print(len(jobs))
     page = 'client_page'
     context = {
-        'page': page
+        'page': page,
+        'number_of_jobs': number_of_jobs
     }
     return render(request, 'lance/dashboard.html', context)
 
@@ -150,7 +154,8 @@ def ClientProfileUpdate(request):
     return render(request, 'lance/talent.html', context)
 
 def ClientApplications(request):
-    applications = Application.objects.filter(job_author=request.user)
+    applications = Application.objects.filter(job_author=request.user.first_name)
+    print(len(applications))
 
     page = 'applications'
     context = {
@@ -160,9 +165,19 @@ def ClientApplications(request):
     return render(request, 'lance/client.html', context)
 
 def ClientJobs(request):
+    if request.method == 'POST':
+        job_title = request.POST.get('job_title')
+        job_description = request.POST.get('job_description')
+        job_budget = request.POST.get('budget')
+        
+        new_job = PostJob.objects.create(title=job_title, description=job_description, budget=job_budget, author=request.user)
+
+    jobs = PostJob.objects.filter(author=request.user)
+    print(len(jobs))
     page = 'jobs'
     context = {
         'page': page,
+        'jobs': jobs,
     }
     return render(request, 'lance/client.html', context)
 
