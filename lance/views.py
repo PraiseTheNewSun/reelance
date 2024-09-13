@@ -20,6 +20,7 @@ def SignUp(request):
 
         user = User.objects.create(username=username, password=password, first_name=first_name, last_name=last_name, email=email)
         user.save()
+        return redirect('login')
 
     page = 'signup'
     context = {
@@ -36,7 +37,7 @@ def Login(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect('client-dashboard')
+            return redirect('talent-dashboard')
         else:
             return redirect('login')
 
